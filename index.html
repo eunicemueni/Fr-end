@@ -115,7 +115,190 @@
 
   </div>
 </section>
+  <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+  body { font-family: 'Poppins', sans-serif; background-color: #1a1424; color: white; scroll-behavior: smooth; }
+  .btn { background-color: #D4AF37; color: black; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s; cursor: pointer; display: inline-block; text-align: center; }
+  .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #D4AF37; }
+  .video-slide { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 0 20px #000; }
+  .discount-badge { background-color: #ff4d6d; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 0.3rem; margin-left: 0.5rem; }
+  .faq-question { font-weight: bold; margin-top: 1rem; }
+  .footer-links a { color: #D4AF37; text-decoration: underline; }
+</style>
+</head>
+<body><!-- Video Creation Tool -->
+<section id="video-tool" class="py-16 bg-[#2b1f38]">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Video Creation Tool</h2>
 
+    <!-- Prompt Input -->
+    <div class="mb-6">
+      <label class="block text-lg font-semibold mb-2">Enter Your Prompt</label>
+      <textarea id="prompt-input" class="w-full p-4 rounded-lg bg-[#3D2C41] text-white" rows="3" placeholder="Describe your scene..."></textarea>
+      <div class="flex flex-wrap mt-2 gap-2">
+        <button onclick="setPrompt('Funny')" class="btn">Funny</button>
+        <button onclick="setPrompt('Cinematic')" class="btn">Cinematic</button>
+        <button onclick="setPrompt('Fantasy')" class="btn">Fantasy</button>
+        <button onclick="refinePrompt()" class="btn">Prompt Magic</button>
+      </div>
+    </div>
+
+    <!-- Upload Photos -->
+    <div class="mb-6">
+      <label class="block text-lg font-semibold mb-2">Upload Photos (Photo-to-Video)</label>
+      <input type="file" id="photo-upload" class="w-full p-2 rounded-lg bg-[#3D2C41] text-white" multiple accept="image/png, image/jpeg">
+    </div>
+
+    <!-- Video Options -->
+    <div class="mb-6 grid md:grid-cols-3 gap-4">
+      <div>
+        <label class="block font-semibold mb-1">Model</label>
+        <select id="model-select" class="w-full p-2 rounded-lg bg-[#3D2C41] text-white">
+          <option>Hyper-realistic</option>
+          <option>Cinematic</option>
+          <option>Fantasy</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Resolution</label>
+        <select id="resolution-select" class="w-full p-2 rounded-lg bg-[#3D2C41] text-white">
+          <option>720p</option>
+          <option>1080p</option>
+          <option>4K</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">Length</label>
+        <select id="length-select" class="w-full p-2 rounded-lg bg-[#3D2C41] text-white">
+          <option>6 sec (Free)</option>
+          <option>30 sec</option>
+          <option>1 min</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Generate / Clear Buttons -->
+    <div class="flex flex-wrap gap-4 mb-6">
+      <button onclick="generateVideo()" class="btn">Generate Video</button>
+      <button onclick="clearVideo()" class="btn bg-red-600 hover:bg-red-700">Clear / Reset</button>
+    </div>
+
+    <!-- Loading & Video Preview -->
+    <div id="video-preview" class="mt-6 text-center">
+      <p id="loading-text" class="mb-2 hidden">Generating your video, please wait...</p>
+      <video id="generated-video" class="mx-auto rounded-lg shadow-lg" controls style="max-width:100%; display:none;"></video>
+      <div class="mt-2">
+        <button id="regenerate-btn" class="btn mb-2 hidden" onclick="generateVideo()">Regenerate</button>
+        <button id="download-btn" class="btn mb-2 hidden">Download</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-16 bg-gradient-to-b from-[#3D2C41] to-[#1a1424]">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Testimonials</h2>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+    <div class="bg-[#3D2C41] p-6 rounded-xl shadow-lg text-center">
+      <p class="mb-4 italic">"Kairah Studio transformed my ideas into cinematic videos in seconds! The AI is incredibly intuitive and creative."</p>
+      <h4 class="font-bold">– Aisha M.</h4>
+    </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl shadow-lg text-center">
+      <p class="mb-4 italic">"I never imagined creating high-quality videos could be this easy. The templates and AI models are amazing."</p>
+      <h4 class="font-bold">– David K.</h4>
+    </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl shadow-lg text-center">
+      <p class="mb-4 italic">"From text to full videos, Kairah Studio is a game-changer for content creators. Truly next-level."</p>
+      <h4 class="font-bold">– Selina R.</h4>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Example JS functions for prompts & video generation
+  function setPrompt(category){
+    document.getElementById('prompt-input').value = category + ' prompt example...';
+  }
+  function refinePrompt(){
+    const input = document.getElementById('prompt-input');
+    input.value = "Refined: " + input.value;
+  }
+  function generateVideo(){
+    document.getElementById('loading-text').classList.remove('hidden');
+    setTimeout(() => {
+      document.getElementById('loading-text').classList.add('hidden');
+      const video = document.getElementById('generated-video');
+      video.src = "https://streamable.com/e/6psp7n"; // Example, replace with real AI model output
+      video.style.display = "block";
+      document.getElementById('regenerate-btn').classList.remove('hidden');
+      document.getElementById('download-btn').classList.remove('hidden');
+    }, 2000);
+  }
+  function clearVideo(){
+    document.getElementById('generated-video').style.display = "none";
+    document.getElementById('regenerate-btn').classList.add('hidden');
+    document.getElementById('download-btn').classList.add('hidden');
+    document.getElementById('prompt-input').value = '';
+    document.getElementById('photo-upload').value = '';
+  }
+</script>
+<script>
+async function generateVideo() {
+  const prompt = document.getElementById('prompt-input').value;
+  const photos = document.getElementById('photo-upload').files;
+  const model = document.getElementById('model-select').value;
+  const resolution = document.getElementById('resolution-select').value;
+  const length = document.getElementById('length-select').value;
+
+  if(!prompt && photos.length === 0) {
+    alert('Please enter a prompt or upload photos.');
+    return;
+  }
+
+  document.getElementById('loading-text').classList.remove('hidden');
+  document.getElementById('generated-video').style.display = 'none';
+
+  try {
+    // Example: calling RunDiffusion / AI backend
+    const formData = new FormData();
+    formData.append('prompt', prompt);
+    formData.append('model', model);
+    formData.append('resolution', resolution);
+    formData.append('length', length);
+
+    for(let i=0; i<photos.length; i++){
+      formData.append('photos', photos[i]);
+    }
+
+    const response = await fetch('https://your-backend-endpoint.com/generate', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if(data.videoUrl){
+      const video = document.getElementById('generated-video');
+      video.src = data.videoUrl; // URL returned by AI backend
+      video.style.display = 'block';
+      document.getElementById('regenerate-btn').classList.remove('hidden');
+      document.getElementById('download-btn').classList.remove('hidden');
+    } else {
+      alert('Video generation failed. Please try again.');
+    }
+  } catch(err) {
+    console.error(err);
+    alert('Error generating video. Check console for details.');
+  } finally {
+    document.getElementById('loading-text').classList.add('hidden');
+  }
+}
+</script>
 <!-- Features Section -->
 <section class="py-16 max-w-6xl mx-auto px-6">
   <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Features & Benefits</h2>

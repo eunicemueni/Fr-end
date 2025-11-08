@@ -1,553 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kairah Studio — AI Video Atelier</title>
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', sans-serif; background: linear-gradient(180deg,#0f0b11,#1a1424); color: #fff; }
-    .btn { background-color: #D4AF37; color: #000; padding: .6rem 1.1rem; border-radius: .6rem; font-weight: 700; display:inline-flex; align-items:center; gap:.5rem; }
-    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); padding: 1rem; border-radius: .8rem; }
-    .muted { color: rgba(255,255,255,0.75); }
-    .video-preview { max-width:100%; border-radius:.6rem; background:#000; min-height:160px; display:flex; align-items:center; justify-content:center; }
-    .hidden { display:none; }
-    a { text-decoration: none; }
-    .small { font-size: .9rem; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairah Studio - AI Video Creator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+  body { font-family: 'Poppins', sans-serif; background-color: #1a1424; color: white; scroll-behavior: smooth; }
+  .btn { background-color: #D4AF37; color: black; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s; cursor: pointer; display: inline-block; text-align: center; }
+  .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #D4AF37; }
+  .video-slide { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 0 20px #000; }
+  .discount-badge { background-color: #ff4d6d; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 0.3rem; margin-left: 0.5rem; }
+  .faq-question { font-weight: bold; margin-top: 1rem; }
+  .footer-links a { color: #D4AF37; text-decoration: underline; }
+</style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Top nav -->
-  <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#3D2C41] to-[#D4AF37] flex items-center justify-center font-bold text-black">K</div>
-      <div>
-        <div class="text-xl font-bold text-[#D4AF37]">Kairah Studio</div>
-        <div class="text-xs muted">AI Video Atelier</div>
-      </div>
+<!-- Hero Section -->
+<section class="text-center py-16 bg-gradient-to-b from-[#3D2C41] to-[#1a1424]">
+  <h1 class="text-5xl md:text-6xl font-bold text-[#D4AF37] mb-4">
+    Kairah Studio – Create AI-Powered Cinematic Worlds
+  </h1>
+  <p class="text-xl md:text-2xl mb-2">
+    Bring your imagination to life with AI. Transform text or photos into stunning videos.  
+    Explore cinematic universes, surreal landscapes, and hyper-realistic characters instantly.  
+    Make mini-movies that bend reality and captivate your audience.  
+    Unlock your creative potential and join the AI revolution today.
+  </p>
+  <a href="#signup" class="btn mt-4 text-lg">Start Creating / Sign In</a>
+
+  <!-- Demo Video Carousel -->
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <iframe class="video-slide" src="https://streamable.com/e/6psp7n" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/2z00ft" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/h06tqk" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/yuafw3" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/aq7y2s" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/9deapa" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/zn3vrv" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/1d9cc5" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/m1yspi" frameborder="0" allowfullscreen></iframe>
+    <iframe class="video-slide" src="https://streamable.com/e/q53j4k" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-16 max-w-6xl mx-auto px-6">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Features & Benefits</h2>
+  <div class="grid md:grid-cols-3 gap-12">
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Text-to-Video</h3>
+      <p>Turn any text prompt into a cinematic video in seconds. Watch your ideas come alive with AI precision.</p>
     </div>
-
-    <div class="flex items-center gap-4">
-      <div id="user-info" class="hidden items-center gap-3">
-        <div id="user-email" class="muted text-sm"></div>
-        <button id="signout-btn" class="btn">Sign out</button>
-      </div>
-      <div id="auth-actions">
-        <button id="open-signin" class="btn">Sign in</button>
-      </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Photo-to-Video</h3>
+      <p>Upload images and let AI animate them into stunning visuals, creating motion and story effortlessly.</p>
     </div>
-  </nav>
-
-  <!-- Main container -->
-  <main class="max-w-7xl mx-auto px-6 pb-20">
-
-    <!-- Hero + CTA -->
-    <section class="text-center py-12">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-[#D4AF37]">Kairah Studio — AI Video Atelier</h1>
-      <p class="mt-4 text-lg muted max-w-3xl mx-auto">
-        Forge cinematic worlds from simple prompts or photos. Text-to-video, photo-to-video, face swap and voice cloning —
-        crafted for creators who want cinematic, viral-ready content fast.
-      </p>
-
-      <div class="mt-6 flex items-center justify-center gap-4">
-        <a href="#create" class="btn">Start Creating</a>
-        <a href="#pricing" class="btn">Plans</a>
-      </div>
-
-      <div class="mt-4 text-sm muted max-w-3xl mx-auto">
-        <strong>Note:</strong> Some sites call full, unrestricted tools "godmode" — slang for "all-powerful access". We've removed that term here and use clear plan names and limits instead.
-      </div>
-    </section>
-
-    <!-- Create tool -->
-    <section id="create" class="grid md:grid-cols-3 gap-8">
-      <!-- Left: controls -->
-      <div class="md:col-span-1 card">
-        <h2 class="text-2xl font-bold text-[#D4AF37]">Create Video</h2>
-        <p class="muted text-sm mt-1">Text-to-Video / Photo-to-Video / Face Swap / Infuser</p>
-
-        <label class="block mt-4 text-sm">Choose model / pipeline</label>
-        <select id="model-select" class="w-full mt-1 p-2 rounded bg-black/30"></select>
-
-        <label class="block mt-4 text-sm">Prompt</label>
-        <textarea id="prompt" rows="4" class="w-full mt-1 p-2 rounded bg-black/30" placeholder="Write cinematic prompt..."></textarea>
-
-        <label class="block mt-4 text-sm">Upload photos (optional)</label>
-        <input id="photos" type="file" accept="image/*" multiple class="mt-2 w-full text-sm"/>
-
-        <div class="flex gap-2 mt-4">
-          <label class="text-sm self-center">Length</label>
-          <select id="length" class="p-2 rounded bg-black/30">
-            <option value="6">6s</option>
-            <option value="15">15s</option>
-            <option value="30">30s</option>
-            <option value="60">60s</option>
-          </select>
-          <label class="text-sm self-center">Quality</label>
-          <select id="quality" class="p-2 rounded bg-black/30">
-            <option value="hd">HD</option>
-            <option value="fhd">FHD</option>
-            <option value="4k">4K</option>
-          </select>
-        </div>
-
-        <div class="mt-4 flex gap-2">
-          <button id="generate-btn" class="btn flex-1">Generate</button>
-          <button id="regenerate-btn" class="btn hidden">Re-gen</button>
-        </div>
-
-        <div class="mt-3 text-xs muted">
-          <strong>Free users:</strong> 1 download per email. Paid users have full access. Sign in to generate.
-        </div>
-
-        <div class="mt-6">
-          <h3 class="text-sm font-semibold">Available API models</h3>
-          <ul id="models-list" class="mt-2 text-xs muted list-disc pl-4" style="line-height:1.6"></ul>
-        </div>
-      </div>
-
-      <!-- Middle: preview -->
-      <div class="md:col-span-2 card">
-        <h3 class="text-lg font-bold">Preview</h3>
-
-        <div id="video-container" class="mt-4 video-preview">
-          <div id="preview-placeholder" class="muted">No preview yet — generate a video to preview here.</div>
-        </div>
-
-        <div id="generation-status" class="mt-4 muted text-sm"></div>
-
-        <div class="mt-4 flex gap-3">
-          <button id="download-btn" class="btn hidden">Download</button>
-          <button id="save-btn" class="btn hidden">Save to Dashboard</button>
-          <button id="open-dashboard" class="btn hidden">Open Dashboard</button>
-        </div>
-
-        <div id="download-info" class="mt-3 text-xs muted"></div>
-      </div>
-    </section>
-
-    <!-- Pricing & Plans -->
-    <section id="pricing" class="mt-12 card">
-      <h2 class="text-2xl font-bold text-[#D4AF37]">Plans</h2>
-      <p class="muted text-sm mt-1">Early bird discounts for the first 100 users.</p>
-
-      <div class="mt-6 grid md:grid-cols-4 gap-4">
-        <!-- Entry -->
-        <div class="p-4 border rounded">
-          <h3 class="font-bold">Entry</h3>
-          <p class="text-sm muted">$19 — Starter access</p>
-          <div class="mt-3 flex flex-col gap-2">
-            <a class="btn small" href="https://www.paypal.com/ncp/payment/2X583XDXBYUPN" target="_blank">PayPal — Entry</a>
-            <a class="btn small" href="https://paystack.shop/pay/ge2324r8fu" target="_blank">Paystack — Entry</a>
-            <div class="mt-2 small muted">M-Pesa payments: <strong>0113554446</strong></div>
-          </div>
-        </div>
-
-        <!-- Pro -->
-        <div class="p-4 border rounded">
-          <h3 class="font-bold">Pro</h3>
-          <p class="text-sm muted">$49 — Monthly pro tools</p>
-          <div class="mt-3 flex flex-col gap-2">
-            <a class="btn small" href="https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW" target="_blank">PayPal — Pro</a>
-            <a class="btn small" href="https://paystack.shop/pay/uli4nrj8xq" target="_blank">Paystack — Pro</a>
-          </div>
-        </div>
-
-        <!-- Diamond -->
-        <div class="p-4 border rounded">
-          <h3 class="font-bold">Diamond</h3>
-          <p class="text-sm muted">$449 — Power user</p>
-          <div class="mt-3 flex flex-col gap-2">
-            <a class="btn small" href="https://www.paypal.com/ncp/payment/S77ESJWSU79JU" target="_blank">PayPal — Diamond</a>
-            <a class="btn small" href="https://paystack.shop/pay/4u6jdu7eft" target="_blank">Paystack — Diamond</a>
-          </div>
-        </div>
-
-        <!-- Lifetime -->
-        <div class="p-4 border rounded">
-          <h3 class="font-bold">Lifetime</h3>
-          <p class="text-sm muted">$1,400 — Full access forever</p>
-          <div class="mt-3 flex flex-col gap-2">
-            <a class="btn small" href="https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU" target="_blank">PayPal — Lifetime</a>
-            <a class="btn small" href="https://paystack.shop/pay/-cdm6oobkz" target="_blank">Paystack — Lifetime</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 small muted">
-        <strong>M-Pesa Payment Info:</strong> Send to <strong>0113554446</strong> — include your email & chosen plan in the message. We will verify and manually assign plan access (or integrate automated M-Pesa later).
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="mt-8 card">
-      <h3 class="text-lg font-bold">FAQ</h3>
-      <div class="mt-4 text-sm muted">
-        <p><strong>What did "godmode" mean?</strong> — It's slang meaning "unlimited, all-powerful access." That term can sound confusing or extreme; we've replaced it with clear plan names and descriptions.</p>
-        <p><strong>Free users:</strong> 1 download per email. Backend enforces limits.</p>
-        <p><strong>APIs used:</strong> /api/generate-video, /api/upload, /api/request-download, /api/job-status/:id, /api/user/videos.</p>
-      </div>
-    </section>
-
-    <footer class="mt-8 text-center muted text-sm">
-      © Kairah Studio — crafted with care.
-    </footer>
-  </main>
-
-  <!-- Sign-in modal (simple) -->
-  <div id="signin-modal" class="hidden fixed inset-0 bg-black/60 z-50 items-center justify-center">
-    <div class="bg-[#0d0b0e] p-6 rounded-lg w-full max-w-md">
-      <h3 class="text-xl font-bold text-[#D4AF37]">Sign in / Sign up</h3>
-      <div class="mt-4">
-        <input id="email-input" type="email" placeholder="Email" class="w-full p-2 rounded mt-2 bg-black/20"/>
-        <input id="pass-input" type="password" placeholder="Password" class="w-full p-2 rounded mt-2 bg-black/20"/>
-        <div class="flex gap-2 mt-3">
-          <button id="email-signin" class="btn flex-1">Sign In</button>
-          <button id="email-signup" class="btn flex-1">Sign Up</button>
-        </div>
-        <div class="mt-3 flex gap-2">
-          <button id="google-signin" class="btn flex-1">Sign in with Google</button>
-          <button id="close-modal" class="btn flex-1">Close</button>
-        </div>
-      </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Viral Templates & Face Swap</h3>
+      <p>Use trending templates, swap faces, and create shareable, viral-ready videos instantly.</p>
+    </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Hyper-Realistic Models</h3>
+      <p>AI generates humans, animals, and objects with cinematic detail and lifelike motion.</p>
+    </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Custom AI Voices</h3>
+      <p>Create dynamic voiceovers in multiple languages, emotions, and styles with AI speech synthesis.</p>
+    </div>
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-xl font-semibold mb-2">Mini-Movies & VR/AR</h3>
+      <p>Produce immersive cinematic experiences in minutes, compatible with VR/AR platforms.</p>
     </div>
   </div>
+</section>
 
-  <!-- Firebase & Client JS -->
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-auth-compat.js"></script>
+<!-- Plans Section -->
+<section id="plans" class="py-16 bg-[#2b1f38]">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Plans & Pricing</h2>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 px-6">
 
-  <script>
-    /*************************************************************************
-     * CONFIG - already populated with your values
-     *
-     * FIREBASE_CONFIG: contains the apiKey you provided along with other fields.
-     * BACKEND_BASE_URL: your Render backend.
-     *
-     * Make sure your backend verifies Firebase ID tokens and enforces
-     * download limits & quotas per email / user.
-     *************************************************************************/
+    <!-- Entry Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-2xl font-bold mb-2">Entry</h3>
+      <p class="mb-4">$19 – Free plan users can generate 1 video</p>
+      <a href="https://www.paypal.com/ncp/payment/2X583XDXBYUPN" target="_blank" class="btn mb-2 block">PayPal</a>
+      <a href="https://paystack.shop/pay/ge2324r8fu" target="_blank" class="btn mb-2 block">Paystack</a>
+      <button onclick="copyMpesainfo('0113554446','Entry')" class="btn block">M-Pesa</button>
+    </div>
 
-    const FIREBASE_CONFIG = {
-      apiKey: "AIzaSyAGlNOCAwsgeDnSJtBux2uIMuP0p_jBJns",
-      authDomain: "kairah-studio.firebaseapp.com",
-      projectId: "kairah-studio",
-      storageBucket: "kairah-studio.firebasestorage.app",
-      messagingSenderId: "145122424961",
-      appId: "1:145122424961:web:5f5d9cc0f36d8f30503580",
-      measurementId: "G-MGN2176Y5Q"
-    };
-    const BACKEND_BASE_URL = "https://k-stu-3y.onrender.com";
+    <!-- Pro Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-2xl font-bold mb-2">Pro</h3>
+      <p class="mb-4">$49/month</p>
+      <a href="https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW" target="_blank" class="btn mb-2 block">PayPal</a>
+      <a href="https://paystack.shop/pay/uli4nrj8xq" target="_blank" class="btn mb-2 block">Paystack</a>
+      <button onclick="copyMpesainfo('0113554446','Pro')" class="btn block">M-Pesa</button>
+    </div>
 
-    // Models/pipelines the UI exposes (your backend should accept these ids)
-    const AVAILABLE_MODELS = [
-      { id: 'text_to_video', name: 'Text → Video (Run Diffusion)' },
-      { id: 'photo_to_video', name: 'Photo → Video (Infuser)' },
-      { id: 'run_diffusion', name: 'Run Diffusion (Cinematic)' },
-      { id: 'face_swap', name: 'Face Swap' },
-      { id: 'infuser', name: 'Infuser (photo blending)' },
-      { id: 'voice_clone', name: 'Voice Clone' },
-      { id: 'upscale', name: 'Upscale / Enhance' },
-      { id: 'edit', name: 'Edit / Inpaint' },
-      { id: 'preview', name: 'Preview / Low-res' }
-    ];
+    <!-- Diamond Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-2xl font-bold mb-2">Diamond</h3>
+      <p class="mb-4">$449/year</p>
+      <a href="https://www.paypal.com/ncp/payment/S77ESJWSU79JU" target="_blank" class="btn mb-2 block">PayPal</a>
+      <a href="https://paystack.shop/pay/4u6jdu7eft" target="_blank" class="btn mb-2 block">Paystack</a>
+      <button onclick="copyMpesainfo('0113554446','Diamond')" class="btn block">M-Pesa</button>
+    </div>
 
-    // Initialize Firebase
-    firebase.initializeApp(FIREBASE_CONFIG);
-    const auth = firebase.auth();
+    <!-- Lifetime Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
+      <h3 class="text-2xl font-bold mb-2">Lifetime</h3>
+      <p class="mb-4">$1,400 – Full access forever</p>
+      <a href="https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU" target="_blank" class="btn mb-2 block">PayPal</a>
+      <a href="https://paystack.shop/pay/-cdm6oobkz" target="_blank" class="btn mb-2 block">Paystack</a>
+      <button onclick="copyMpesainfo('0113554446','Lifetime')" class="btn block">M-Pesa</button>
+    </div>
 
-    // UI refs
-    const signInModal = document.getElementById('signin-modal');
-    const openSignin = document.getElementById('open-signin');
-    const closeModal = document.getElementById('close-modal');
-    const emailSigninBtn = document.getElementById('email-signin');
-    const emailSignupBtn = document.getElementById('email-signup');
-    const googleSigninBtn = document.getElementById('google-signin');
-    const signoutBtn = document.getElementById('signout-btn');
-    const userInfoWrap = document.getElementById('user-info');
-    const userEmailEl = document.getElementById('user-email');
-    const authActions = document.getElementById('auth-actions');
+  </div>
+</section>
 
-    const modelSelect = document.getElementById('model-select');
-    const modelsList = document.getElementById('models-list');
-    const promptEl = document.getElementById('prompt');
-    const photosEl = document.getElementById('photos');
-    const generateBtn = document.getElementById('generate-btn');
-    const regenerateBtn = document.getElementById('regenerate-btn');
-    const videoContainer = document.getElementById('video-container');
-    const previewPlaceholder = document.getElementById('preview-placeholder');
-    const generationStatus = document.getElementById('generation-status');
-    const downloadBtn = document.getElementById('download-btn');
-    const saveBtn = document.getElementById('save-btn');
-    const openDashboardBtn = document.getElementById('open-dashboard');
-    const downloadInfo = document.getElementById('download-info');
+<!-- Sign Up / Login Section -->
+<section id="signup" class="py-16 max-w-2xl mx-auto px-6">
+  <h2 class="text-3xl font-bold text-center text-[#D4AF37] mb-8">Sign Up / Login</h2>
+  <div class="bg-[#3D2C41] p-8 rounded-xl">
+    <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 rounded text-black">
+    <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 rounded text-black">
+    <button id="signup-btn" class="btn w-full mb-2">Sign Up</button>
+    <button id="login-btn" class="btn w-full mb-2">Login</button>
+    <button id="google-login" class="btn w-full">Sign In with Google</button>
+    <p class="mt-2 text-sm">Forgot password? <a href="#" class="text-[#D4AF37]">Reset here</a></p>
+    <p class="mt-2 text-sm text-[#ff4d6d]">Support: keishapoa@gmail.com</p>
+  </div>
+</section>
 
-    // populate models UI
-    AVAILABLE_MODELS.forEach(m => {
-      const opt = document.createElement('option');
-      opt.value = m.id; opt.textContent = m.name;
-      modelSelect.appendChild(opt);
+<!-- FAQ Section -->
+<section id="faq" class="py-16 max-w-6xl mx-auto px-6">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">FAQ</h2>
+  <div class="space-y-6">
+    <div>
+      <p class="faq-question">1. Can I really create videos from just text or images?</p>
+      <p>Yes! Kairah Studio transforms text prompts or uploaded images into cinematic videos in seconds using advanced AI models.</p>
+    </div>
+    <div>
+      <p class="faq-question">2. How fast is video generation?</p>
+      <p>Depending on length and complexity, most videos generate in under a minute, optimized for quality and realism.</p>
+    </div>
+    <div>
+      <p class="faq-question">3. What AI models are used?</p>
+      <p>RunDiffusion, Face Swap, AI voice synthesis, and hyper-realistic cinematic generators are integrated for real output — no mockups.</p>
+    </div>
+    <div>
+      <p class="faq-question">4. Can I use my own photos or characters?</p>
+      <p>Absolutely. Upload your own photos for Photo-to-Video or generate custom characters for your story.</p>
+    </div>
+    <div>
+      <p class="faq-question">5. How do plans differ?</p>
+      <p>Free plan allows 1 short video; Pro/Diamond/Lifetime unlock longer videos, higher resolution, unlimited generation, and premium features.</p>
+    </div>
+    <div>
+      <p class="faq-question">6. Can I upgrade later?</p>
+      <p>Yes. Upgrade anytime using PayPal, Paystack, or M-Pesa links in the Plans section.</p>
+    </div>
+    <div>
+      <p class="faq-question">7. Is there a refund policy?</p>
+      <p>Yes, see Terms & Conditions below. Refunds are possible within 7 days under certain conditions.</p>
+    </div>
+    <div>
+      <p class="faq-question">8. Are generated videos saved?</p>
+      <p>All videos are saved to your dashboard. Free plan downloads are limited; paid plans allow full downloads.</p>
+    </div>
+    <div>
+      <p class="faq-question">9. What file formats are supported?</p>
+      <p>Videos are exported as MP4. Photos for uploads should be PNG or JPEG.</p>
+    </div>
+    <div>
+      <p class="faq-question">10. Who can I contact for support?</p>
+      <p>Email: <a href="mailto:keishapoa@gmail.com" class="underline text-[#D4AF37]">keishapoa@gmail.com</a></p>
+    </div>
+  </div>
+</section>
 
-      const li = document.createElement('li');
-      li.textContent = m.id + ' — ' + m.name;
-      modelsList.appendChild(li);
+<!-- Terms & Privacy -->
+<section id="terms" class="py-16 max-w-6xl mx-auto px-6">
+  <h2 class="text-3xl font-bold text-[#D4AF37] mb-4">Terms & Conditions</h2>
+  <p>
+    Welcome to Kairah Studio. By using our platform, you agree to our terms, which include responsible use of AI-generated content, respect for copyright, and payment compliance. All users must be 18+ and agree to our subscription model. We reserve the right to suspend accounts violating policies. Refunds are offered under certain conditions, including technical errors or subscription issues. Kairah Studio is not liable for third-party content or misuse of generated videos. Users retain ownership of personal uploads, while AI-generated content remains under our licensing for platform use. Continued use indicates acceptance of updates and modifications to terms. Support inquiries can be made via keishapoa@gmail.com. This document protects users and the platform, ensuring creative freedom with accountability.
+  </p>
+  <h2 class="text-3xl font-bold text-[#D4AF37] mt-8 mb-4">Privacy Policy</h2>
+  <p>
+    Kairah Studio values your privacy. We collect minimal personal information, including email and payment details, solely to provide services and ensure secure authentication. Your data is stored securely in Firebase and is not shared with third parties without consent, except for payment processing purposes (PayPal, Paystack, M-Pesa). We use cookies only for essential functionality and session management. Users can request deletion of personal data at any time. Generated videos are saved for your account and are only accessible to you unless shared. By using Kairah Studio, you consent to this privacy policy, ensuring transparency, security, and user control over personal information.
+  </p>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 bg-[#3D2C41] text-center">
+  <p class="mb-2">&copy; 2025 Kairah Studio. All rights reserved.</p>
+  <p class="footer-links">
+    <a href="#terms">Terms</a> | <a href="#terms">Privacy Policy</a> | <a href="#signup">Contact</a>
+  </p>
+  <div class="mt-4 space-x-4">
+    <a href="#" class="text-[#D4AF37]">Facebook</a>
+    <a href="#" class="text-[#D4AF37]">Twitter</a>
+    <a href="#" class="text-[#D4AF37]">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAGlNOCAwsgeDnSJtBux2uIMuP0p_jBJns",
+    authDomain: "kairah-studio.firebaseapp.com",
+    projectId: "kairah-studio",
+    storageBucket: "kairah-studio.firebasestorage.app",
+    messagingSenderId: "145122424961",
+    appId: "1:145122424961:web:5f5d9cc0f36d8f30503580",
+    measurementId: "G-MGN2176Y5Q"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Sign Up
+  document.getElementById('signup-btn').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => { alert('Sign Up Successful!'); })
+      .catch(error => { alert(error.message); });
+  });
+
+  // Login
+  document.getElementById('login-btn').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => { alert('Login Successful!'); })
+      .catch(error => { alert(error.message); });
+  });
+
+  // Google Login
+  document.getElementById('google-login').addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(result => { alert('Google Sign-In Successful!'); })
+      .catch(error => { alert(error.message); });
+  });
+
+  // M-Pesa Info Copy
+  function copyMpesainfo(phone, plan) {
+    navigator.clipboard.writeText(`Pay ${plan} Plan to ${phone} via M-Pesa`).then(() => {
+      alert('M-Pesa info copied to clipboard!');
     });
+  }
+</script>
 
-    // auth modal handlers
-    openSignin.addEventListener('click', () => signInModal.classList.remove('hidden'));
-    closeModal.addEventListener('click', () => signInModal.classList.add('hidden'));
-
-    emailSigninBtn.addEventListener('click', async () => {
-      const email = document.getElementById('email-input').value;
-      const pass = document.getElementById('pass-input').value;
-      try {
-        await auth.signInWithEmailAndPassword(email, pass);
-        signInModal.classList.add('hidden');
-      } catch (e) {
-        alert('Sign in error: ' + e.message);
-      }
-    });
-
-    emailSignupBtn.addEventListener('click', async () => {
-      const email = document.getElementById('email-input').value;
-      const pass = document.getElementById('pass-input').value;
-      try {
-        const userCred = await auth.createUserWithEmailAndPassword(email, pass);
-        await userCred.user.sendEmailVerification();
-        signInModal.classList.add('hidden');
-        alert('Signed up — verification email sent.');
-      } catch (e) {
-        alert('Sign up error: ' + e.message);
-      }
-    });
-
-    googleSigninBtn.addEventListener('click', async () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      try {
-        await auth.signInWithPopup(provider);
-        signInModal.classList.add('hidden');
-      } catch (e) {
-        alert('Google sign in error: ' + e.message);
-      }
-    });
-
-    signoutBtn.addEventListener('click', async () => {
-      await auth.signOut();
-    });
-
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        userInfoWrap.classList.remove('hidden');
-        authActions.classList.add('hidden');
-        userEmailEl.textContent = user.email;
-        openDashboardBtn.classList.remove('hidden');
-      } else {
-        userInfoWrap.classList.add('hidden');
-        authActions.classList.remove('hidden');
-        openDashboardBtn.classList.add('hidden');
-      }
-    });
-
-    async function getIdToken() {
-      const user = auth.currentUser;
-      if (!user) return null;
-      return await user.getIdToken(true);
-    }
-
-    async function uploadFiles(files) {
-      if (!files || files.length === 0) return [];
-      const token = await getIdToken();
-      const form = new FormData();
-      for (let i = 0; i < files.length; i++) form.append('files', files[i]);
-      const res = await fetch(BACKEND_BASE_URL + '/api/upload', {
-        method: 'POST',
-        headers: token ? { 'Authorization': 'Bearer ' + token } : {},
-        body: form
-      });
-      if (!res.ok) throw new Error('Upload failed: ' + await res.text());
-      return await res.json();
-    }
-
-    // generation
-    let lastGeneration = null;
-    generateBtn.addEventListener('click', async () => {
-      try {
-        if (!auth.currentUser) {
-          signInModal.classList.remove('hidden');
-          return;
-        }
-        generateBtn.disabled = true;
-        generationStatus.textContent = 'Preparing...';
-        const model = modelSelect.value;
-        const prompt = promptEl.value.trim();
-        const length = document.getElementById('length').value;
-        const quality = document.getElementById('quality').value;
-
-        const files = photosEl.files;
-        let uploaded = [];
-        if (files && files.length > 0) {
-          generationStatus.textContent = 'Uploading images...';
-          const upData = await uploadFiles(files);
-          uploaded = upData.files || [];
-        }
-
-        generationStatus.textContent = 'Requesting generation...';
-
-        const token = await getIdToken();
-        const payload = {
-          model,
-          prompt,
-          options: { length, quality },
-          files: uploaded.map(f=>f.id)
-        };
-
-        const res = await fetch(BACKEND_BASE_URL + '/api/generate-video', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token ? ('Bearer ' + token) : ''
-          },
-          body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error('Generation request failed: ' + text);
-        }
-
-        const data = await res.json(); // { jobId, previewUrl? }
-        lastGeneration = data;
-        showPreviewFromData(data);
-        generationStatus.textContent = 'Generation started. Job ID: ' + data.jobId;
-        regenerateBtn.classList.remove('hidden');
-        downloadBtn.classList.add('hidden');
-        downloadInfo.textContent = '';
-      } catch (err) {
-        alert('Error: ' + err.message);
-      } finally {
-        generateBtn.disabled = false;
-      }
-    });
-
-    regenerateBtn.addEventListener('click', () => generateBtn.click());
-
-    async function showPreviewFromData(data) {
-      previewPlaceholder.remove();
-      videoContainer.innerHTML = '';
-      if (data.previewUrl) {
-        const videoEl = document.createElement('video');
-        videoEl.src = data.previewUrl;
-        videoEl.controls = true;
-        videoEl.className = 'video-preview';
-        videoEl.style.minHeight = '240px';
-        videoContainer.appendChild(videoEl);
-        downloadBtn.classList.remove('hidden');
-        saveBtn.classList.remove('hidden');
-      } else {
-        const spinner = document.createElement('div');
-        spinner.textContent = 'Generating preview... (polling)';
-        videoContainer.appendChild(spinner);
-        pollJob(data.jobId);
-      }
-    }
-
-    async function pollJob(jobId) {
-      generationStatus.textContent = 'Polling job status...';
-      let attempts = 0;
-      const interval = setInterval(async () => {
-        attempts++;
-        if (attempts > 120) { clearInterval(interval); generationStatus.textContent = 'Timed out'; return; }
-        try {
-          const token = await getIdToken();
-          const res = await fetch(BACKEND_BASE_URL + '/api/job-status/' + encodeURIComponent(jobId), {
-            headers: { 'Authorization': token ? ('Bearer ' + token) : '' }
-          });
-          if (!res.ok) { console.warn('job poll failed', await res.text()); return; }
-          const d = await res.json(); // { status, previewUrl?, resultUrl? }
-          generationStatus.textContent = 'Job: ' + d.status;
-          if (d.previewUrl) {
-            clearInterval(interval);
-            videoContainer.innerHTML = '';
-            const videoEl = document.createElement('video');
-            videoEl.src = d.previewUrl;
-            videoEl.controls = true;
-            videoEl.className = 'video-preview';
-            videoEl.style.minHeight = '240px';
-            videoContainer.appendChild(videoEl);
-            downloadBtn.classList.remove('hidden');
-            saveBtn.classList.remove('hidden');
-            lastGeneration = d;
-          }
-          if (d.status === 'failed') {
-            clearInterval(interval);
-            generationStatus.textContent = 'Generation failed.';
-          }
-        } catch (err) {
-          console.warn('poll error', err);
-        }
-      }, 3000);
-    }
-
-    downloadBtn.addEventListener('click', async () => {
-      try {
-        downloadBtn.disabled = true;
-        generationStatus.textContent = 'Requesting download...';
-        const token = await getIdToken();
-        const res = await fetch(BACKEND_BASE_URL + '/api/request-download', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token ? ('Bearer ' + token) : ''
-          },
-          body: JSON.stringify({ jobId: lastGeneration.jobId || lastGeneration.id || lastGeneration.resultId })
-        });
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error('Download request failed: ' + text);
-        }
-        const d = await res.json(); // { downloadUrl, message, downloadsLeft }
-        window.open(d.downloadUrl, '_blank');
-        downloadInfo.textContent = d.message ? d.message : 'Download started.';
-      } catch (err) {
-        alert('Download failed: ' + err.message);
-      } finally {
-        downloadBtn.disabled = false;
-      }
-    });
-
-    saveBtn.addEventListener('click', async () => {
-      try {
-        const token = await getIdToken();
-        const res = await fetch(BACKEND_BASE_URL + '/api/user/videos', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token ? ('Bearer ' + token) : ''
-          },
-          body: JSON.stringify({ job: lastGeneration })
-        });
-        if (!res.ok) throw new Error(await res.text());
-        alert('Saved to your dashboard.');
-      } catch (err) {
-        alert('Save failed: ' + err.message);
-      }
-    });
-
-    document.getElementById('free-cta').addEventListener('click', () => {
-      if (!auth.currentUser) signInModal.classList.remove('hidden');
-      else alert('You are signed in. Use the create form above.');
-    });
-
-    window.addEventListener('load', () => {
-      if (!FIREBASE_CONFIG.apiKey || BACKEND_BASE_URL.includes('your-backend')) {
-        console.warn('Please verify FIREBASE_CONFIG and BACKEND_BASE_URL are correct.');
-      }
-    });
-
-  </script>
 </body>
 </html>

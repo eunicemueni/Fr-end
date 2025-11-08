@@ -149,48 +149,94 @@
 </section>
 
 <!-- Plans Section -->
-<section id="plans" class="py-16 bg-[#2b1f38]">
-  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Plans & Pricing</h2>
-  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 px-6">
+<!-- Payment Modal -->
+<div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="bg-[#1a1424] rounded-2xl p-8 max-w-lg w-full relative">
+    <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-[#D4AF37] font-bold text-2xl">&times;</button>
+    <h3 id="modalPlanName" class="text-3xl font-bold text-center text-[#D4AF37] mb-6"></h3>
+    <p class="text-center text-gray-300 mb-6">Choose your preferred payment method:</p>
+    
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <!-- PayPal -->
+      <a href="#" id="paypalLink" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
+        <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="w-8 h-8">
+        PayPal
+      </a>
 
-    <!-- Entry Plan -->
-    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
-      <h3 class="text-2xl font-bold mb-2">Entry</h3>
-      <p class="mb-4">$19 – Free plan users can generate 1 video</p>
-      <a href="https://www.paypal.com/ncp/payment/2X583XDXBYUPN" target="_blank" class="btn mb-2 block">PayPal</a>
-      <a href="https://paystack.shop/pay/ge2324r8fu" target="_blank" class="btn mb-2 block">Paystack</a>
-      <button onclick="copyMpesainfo('0113554446','Entry')" class="btn block">M-Pesa</button>
+      <!-- Paystack -->
+      <a href="#" id="paystackLink" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-[#0d60ff] text-white rounded-lg shadow hover:scale-105 transition">
+        <img src="https://seeklogo.com/images/P/paystack-logo-14BCF5B8A4-seeklogo.com.png" alt="Paystack" class="w-8 h-8">
+        Paystack
+      </a>
+
+      <!-- M-Pesa -->
+      <button onclick="copyMpesainfo(currentPlan.phone,currentPlan.name)" class="flex items-center justify-center gap-2 p-3 bg-[#4CAF50] text-white rounded-lg shadow hover:scale-105 transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/M-Pesa_logo.png" alt="M-Pesa" class="w-8 h-8">
+        M-Pesa
+      </button>
+
+      <!-- Credit Cards -->
+      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="w-8 h-8">
+        Mastercard
+      </a>
+      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Visa_2014_logo_detail.svg" alt="Visa" class="w-8 h-8">
+        Visa
+      </a>
+      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Amex_logo.svg" alt="Amex" class="w-8 h-8">
+        Amex
+      </a>
     </div>
-
-    <!-- Pro Plan -->
-    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
-      <h3 class="text-2xl font-bold mb-2">Pro</h3>
-      <p class="mb-4">$49/month</p>
-      <a href="https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW" target="_blank" class="btn mb-2 block">PayPal</a>
-      <a href="https://paystack.shop/pay/uli4nrj8xq" target="_blank" class="btn mb-2 block">Paystack</a>
-      <button onclick="copyMpesainfo('0113554446','Pro')" class="btn block">M-Pesa</button>
-    </div>
-
-    <!-- Diamond Plan -->
-    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
-      <h3 class="text-2xl font-bold mb-2">Diamond</h3>
-      <p class="mb-4">$449/year</p>
-      <a href="https://www.paypal.com/ncp/payment/S77ESJWSU79JU" target="_blank" class="btn mb-2 block">PayPal</a>
-      <a href="https://paystack.shop/pay/4u6jdu7eft" target="_blank" class="btn mb-2 block">Paystack</a>
-      <button onclick="copyMpesainfo('0113554446','Diamond')" class="btn block">M-Pesa</button>
-    </div>
-
-    <!-- Lifetime Plan -->
-    <div class="bg-[#3D2C41] p-6 rounded-xl text-center">
-      <h3 class="text-2xl font-bold mb-2">Lifetime</h3>
-      <p class="mb-4">$1,400 – Full access forever</p>
-      <a href="https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU" target="_blank" class="btn mb-2 block">PayPal</a>
-      <a href="https://paystack.shop/pay/-cdm6oobkz" target="_blank" class="btn mb-2 block">Paystack</a>
-      <button onclick="copyMpesainfo('0113554446','Lifetime')" class="btn block">M-Pesa</button>
-    </div>
-
+    
+    <p class="text-center text-gray-400 text-sm">All payments are secure and processed via trusted providers.</p>
   </div>
-</section>
+</div>
+
+<script>
+let currentPlan = {name: '', phone: '0113554446'};
+
+// Function to open modal with plan
+function openPaymentModal(planName) {
+  currentPlan.name = planName;
+  document.getElementById('modalPlanName').innerText = planName + ' Plan';
+  
+  // Update payment links
+  switch(planName) {
+    case 'Entry':
+      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/2X583XDXBYUPN';
+      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/ge2324r8fu';
+      break;
+    case 'Pro':
+      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW';
+      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/uli4nrj8xq';
+      break;
+    case 'Diamond':
+      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/S77ESJWSU79JU';
+      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/4u6jdu7eft';
+      break;
+    case 'Lifetime':
+      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU';
+      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/-cdm6oobkz';
+      break;
+  }
+
+  document.getElementById('paymentModal').classList.remove('hidden');
+}
+
+// Close modal
+function closePaymentModal() {
+  document.getElementById('paymentModal').classList.add('hidden');
+}
+
+// M-Pesa info copy
+function copyMpesainfo(phone, plan) {
+  navigator.clipboard.writeText(phone).then(() => {
+    alert(`M-Pesa number ${phone} for ${plan} plan copied. Use your phone to complete the payment.`);
+  });
+}
+</script>
 
 <!-- Sign Up / Login Section -->
 <section id="signup" class="py-16 max-w-2xl mx-auto px-6">

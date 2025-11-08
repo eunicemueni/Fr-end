@@ -4,21 +4,36 @@
     Kairah Studio
   </h1>
 </header>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+  body { font-family: 'Poppins', sans-serif; background-color: #1a1424; color: white; scroll-behavior: smooth; }
+  .btn { background-color: #D4AF37; color: black; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.2s; cursor: pointer; display: inline-block; text-align: center; }
+  .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #D4AF37; }
+  .video-slide { max-width: 100%; border-radius: 0.5rem; box-shadow: 0 0 20px #000; }
+  .discount-badge { background-color: #ff4d6d; color: white; padding: 0.2rem 0.5rem; font-size: 0.8rem; border-radius: 0.3rem; margin-left: 0.5rem; }
+  .faq-question { font-weight: bold; margin-top: 1rem; }
+  .footer-links a { color: #D4AF37; text-decoration: underline; }
+</style>
+</head>
+<body>
 
 <!-- Hero Section -->
 <section class="text-center py-16 bg-gradient-to-b from-[#3D2C41] to-[#1a1424]">
-  <h2 class="text-5xl md:text-6xl font-bold text-[#D4AF37] mb-4">
-    Create AI-Powered Cinematic Worlds
-  </h2>
-  <p class="text-xl md:text-2xl mb-4">
-    Bring your imagination to life with AI. Transform text or photos into stunning videos.<br>
-    Explore cinematic universes, surreal landscapes, and hyper-realistic characters instantly.<br>
-    Make mini-movies that bend reality and captivate your audience.<br>
+  <h1 class="text-5xl md:text-6xl font-bold text-[#D4AF37] mb-4">
+    Kairah Studio – Create AI-Powered Cinematic Worlds
+  </h1>
+  <p class="text-xl md:text-2xl mb-2">
+    Bring your imagination to life with AI. Transform text or photos into stunning videos.  
+    Explore cinematic universes, surreal landscapes, and hyper-realistic characters instantly.  
+    Make mini-movies that bend reality and captivate your audience.  
     Unlock your creative potential and join the AI revolution today.
   </p>
   <a href="#signup" class="btn mt-4 text-lg">Start Creating / Sign In</a>
-</section>
-
 <!-- Demo Video Carousel -->
 <section class="mt-12 max-w-7xl mx-auto px-4">
   <h2 class="text-center text-3xl md:text-4xl font-bold mb-8" style="color:#D4AF37;">

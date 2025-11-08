@@ -147,93 +147,131 @@
     </div>
   </div>
 </section>
+<section id="plans" class="py-16 bg-[#2b1f38]">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Plans & Pricing</h2>
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 px-6">
 
-<!-- Plans Section -->
-<!-- Payment Modal -->
-<div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
-  <div class="bg-[#1a1424] rounded-2xl p-8 max-w-lg w-full relative">
-    <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-[#D4AF37] font-bold text-2xl">&times;</button>
-    <h3 id="modalPlanName" class="text-3xl font-bold text-center text-[#D4AF37] mb-6"></h3>
-    <p class="text-center text-gray-300 mb-6">Choose your preferred payment method:</p>
-    
-    <div class="grid grid-cols-2 gap-4 mb-6">
-      <!-- PayPal -->
-      <a href="#" id="paypalLink" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
-        <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" class="w-8 h-8">
-        PayPal
-      </a>
-
-      <!-- Paystack -->
-      <a href="#" id="paystackLink" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-[#0d60ff] text-white rounded-lg shadow hover:scale-105 transition">
-        <img src="https://seeklogo.com/images/P/paystack-logo-14BCF5B8A4-seeklogo.com.png" alt="Paystack" class="w-8 h-8">
-        Paystack
-      </a>
-
-      <!-- M-Pesa -->
-      <button onclick="copyMpesainfo(currentPlan.phone,currentPlan.name)" class="flex items-center justify-center gap-2 p-3 bg-[#4CAF50] text-white rounded-lg shadow hover:scale-105 transition">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/M-Pesa_logo.png" alt="M-Pesa" class="w-8 h-8">
-        M-Pesa
-      </button>
-
-      <!-- Credit Cards -->
-      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="w-8 h-8">
-        Mastercard
-      </a>
-      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Visa_2014_logo_detail.svg" alt="Visa" class="w-8 h-8">
-        Visa
-      </a>
-      <a href="#" class="flex items-center justify-center gap-2 p-3 bg-white text-black rounded-lg shadow hover:scale-105 transition">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Amex_logo.svg" alt="Amex" class="w-8 h-8">
-        Amex
-      </a>
+    <!-- Entry Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center shadow-lg hover:scale-[1.03] transition">
+      <h3 class="text-2xl font-bold mb-2">Entry</h3>
+      <p class="mb-4">$19 – Free plan users can generate <span class="font-semibold">1 video up to 6 seconds</span></p>
+      <p class="text-gray-300 text-sm mb-4">
+        Perfect for first-time creators. Generate a short, high-quality cinematic video to test the power of Kairah Studio. Features included:
+        <ul class="text-left list-disc list-inside mt-2">
+          <li>Text-to-video AI generation</li>
+          <li>Photo-to-video transformation</li>
+          <li>Access to trending templates & basic face swap</li>
+          <li>Limited AI voice customization</li>
+        </ul>
+      </p>
+      <button onclick="openPaymentModal('Entry')" class="btn mb-2 block">Choose Entry</button>
     </div>
-    
-    <p class="text-center text-gray-400 text-sm">All payments are secure and processed via trusted providers.</p>
+
+    <!-- Pro Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center shadow-lg hover:scale-[1.03] transition">
+      <h3 class="text-2xl font-bold mb-2">Pro</h3>
+      <p class="mb-4">$49/month – Ideal for regular creators</p>
+      <p class="text-gray-300 text-sm mb-4">
+        Unlock full-length videos, higher resolutions, and advanced features. Includes:
+        <ul class="text-left list-disc list-inside mt-2">
+          <li>Unlimited text-to-video generation</li>
+          <li>Photo-to-video with multi-scene AI</li>
+          <li>Face swap & viral template access</li>
+          <li>Custom AI voices with multiple languages</li>
+          <li>Priority generation speed</li>
+        </ul>
+      </p>
+      <button onclick="openPaymentModal('Pro')" class="btn mb-2 block">Choose Pro</button>
+    </div>
+
+    <!-- Diamond Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center shadow-lg hover:scale-[1.03] transition">
+      <h3 class="text-2xl font-bold mb-2">Diamond</h3>
+      <p class="mb-4">$449/year – For power users & professionals</p>
+      <p class="text-gray-300 text-sm mb-4">
+        Complete creative freedom. Everything in Pro, plus:
+        <ul class="text-left list-disc list-inside mt-2">
+          <li>Priority AI model access (Hyper-realistic, Cinematic, Fantasy)</li>
+          <li>Commercial usage rights</li>
+          <li>Advanced effects, filters, and scene optimization</li>
+          <li>Extended video length: 3 minutes max</li>
+          <li>Dedicated support</li>
+        </ul>
+      </p>
+      <button onclick="openPaymentModal('Diamond')" class="btn mb-2 block">Choose Diamond</button>
+    </div>
+
+    <!-- Lifetime Plan -->
+    <div class="bg-[#3D2C41] p-6 rounded-xl text-center shadow-lg hover:scale-[1.03] transition">
+      <h3 class="text-2xl font-bold mb-2">Lifetime</h3>
+      <p class="mb-4">$1,400 – Full access forever</p>
+      <p class="text-gray-300 text-sm mb-4">
+        For creators who demand the ultimate. Includes everything from Diamond, forever:
+        <ul class="text-left list-disc list-inside mt-2">
+          <li>Unlimited video generation & downloads</li>
+          <li>All AI models unlocked, full resolution</li>
+          <li>Commercial & redistribution rights</li>
+          <li>VIP support & priority updates</li>
+          <li>Exclusive early access to new features</li>
+        </ul>
+      </p>
+      <button onclick="openPaymentModal('Lifetime')" class="btn mb-2 block">Choose Lifetime</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Payment Modal (hidden by default) -->
+<div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+  <div class="bg-[#3D2C41] p-8 rounded-xl max-w-md w-full">
+    <h3 class="text-2xl font-bold mb-4 text-center text-[#D4AF37]" id="modal-plan-name"></h3>
+    <div class="space-y-3">
+      <a href="#" id="modal-paypal" target="_blank" class="flex items-center justify-center gap-3 btn w-full"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" class="h-6"> PayPal</a>
+      <a href="#" id="modal-paystack" target="_blank" class="flex items-center justify-center gap-3 btn w-full"><img src="https://seeklogo.com/images/P/paystack-logo-1B9F0FA120-seeklogo.com.png" class="h-6"> Paystack</a>
+      <button id="modal-mpesa" class="flex items-center justify-center gap-3 btn w-full"><img src="https://upload.wikimedia.org/wikipedia/commons/3/32/M-PESA_Logo.png" class="h-6"> M-Pesa</button>
+      <div class="flex justify-around mt-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" class="h-6">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Visa_2014_logo_detail.svg" class="h-6">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Amex_logo.png" class="h-6">
+      </div>
+    </div>
+    <button onclick="closePaymentModal()" class="mt-4 btn w-full">Close</button>
   </div>
 </div>
 
 <script>
-let currentPlan = {name: '', phone: '0113554446'};
-
-// Function to open modal with plan
-function openPaymentModal(planName) {
-  currentPlan.name = planName;
-  document.getElementById('modalPlanName').innerText = planName + ' Plan';
+function openPaymentModal(plan) {
+  document.getElementById('payment-modal').classList.remove('hidden');
+  document.getElementById('modal-plan-name').innerText = plan + " Plan";
   
-  // Update payment links
-  switch(planName) {
-    case 'Entry':
-      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/2X583XDXBYUPN';
-      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/ge2324r8fu';
-      break;
-    case 'Pro':
-      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW';
-      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/uli4nrj8xq';
-      break;
-    case 'Diamond':
-      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/S77ESJWSU79JU';
-      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/4u6jdu7eft';
-      break;
-    case 'Lifetime':
-      document.getElementById('paypalLink').href = 'https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU';
-      document.getElementById('paystackLink').href = 'https://paystack.shop/pay/-cdm6oobkz';
-      break;
+  // Set links dynamically
+  if(plan === 'Entry') {
+    document.getElementById('modal-paypal').href = "https://www.paypal.com/ncp/payment/2X583XDXBYUPN";
+    document.getElementById('modal-paystack').href = "https://paystack.shop/pay/ge2324r8fu";
+    document.getElementById('modal-mpesa').onclick = () => { copyMpesainfo('0113554446','Entry') };
+  } else if(plan === 'Pro') {
+    document.getElementById('modal-paypal').href = "https://www.paypal.com/ncp/payment/DVSZY7GB2QCYW";
+    document.getElementById('modal-paystack').href = "https://paystack.shop/pay/uli4nrj8xq";
+    document.getElementById('modal-mpesa').onclick = () => { copyMpesainfo('0113554446','Pro') };
+  } else if(plan === 'Diamond') {
+    document.getElementById('modal-paypal').href = "https://www.paypal.com/ncp/payment/S77ESJWSU79JU";
+    document.getElementById('modal-paystack').href = "https://paystack.shop/pay/4u6jdu7eft";
+    document.getElementById('modal-mpesa').onclick = () => { copyMpesainfo('0113554446','Diamond') };
+  } else if(plan === 'Lifetime') {
+    document.getElementById('modal-paypal').href = "https://www.paypal.com/ncp/payment/K4Y9SVNW76XYU";
+    document.getElementById('modal-paystack').href = "https://paystack.shop/pay/-cdm6oobkz";
+    document.getElementById('modal-mpesa').onclick = () => { copyMpesainfo('0113554446','Lifetime') };
   }
-
-  document.getElementById('paymentModal').classList.remove('hidden');
 }
 
-// Close modal
 function closePaymentModal() {
-  document.getElementById('paymentModal').classList.add('hidden');
+  document.getElementById('payment-modal').classList.add('hidden');
 }
 
-// M-Pesa info copy
-function copyMpesainfo(phone, plan) {
-  navigator.clipboard.writeText(phone).then(() => {
-    alert(`M-Pesa number ${phone} for ${plan} plan copied. Use your phone to complete the payment.`);
+// Copy M-Pesa info
+function copyMpesainfo(phone, plan){
+  navigator.clipboard.writeText(`Pay ${plan} plan to M-Pesa number: ${phone}`).then(() => {
+    alert(`M-Pesa info copied for ${plan} plan!`);
   });
 }
 </script>

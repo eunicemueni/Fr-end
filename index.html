@@ -288,53 +288,203 @@ function copyMpesainfo(phone, plan){
     <p class="mt-2 text-sm text-[#ff4d6d]">Support: keishapoa@gmail.com</p>
   </div>
 </section>
-
 <!-- FAQ Section -->
-<section id="faq" class="py-16 max-w-6xl mx-auto px-6">
-  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">FAQ</h2>
-  <div class="space-y-6">
-    <div>
-      <p class="faq-question">1. Can I really create videos from just text or images?</p>
-      <p>Yes! Kairah Studio transforms text prompts or uploaded images into cinematic videos in seconds using advanced AI models.</p>
+<section id="faq" class="py-16 bg-[#2b1f38] text-white px-6 max-w-7xl mx-auto">
+  <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Frequently Asked Questions</h2>
+
+  <!-- Search Box -->
+  <div class="mb-8 max-w-xl mx-auto">
+    <input type="text" id="faq-search" placeholder="Search FAQs..." 
+      class="w-full p-3 rounded-lg text-black focus:outline-none" />
+  </div>
+
+  <div class="space-y-4" id="faq-list">
+    <!-- Each FAQ Item -->
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        1. Can I really create videos from just text or images?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Yes! Kairah Studio transforms text prompts or uploaded images into cinematic videos using advanced AI models. Perfect for beginners and professional creators.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">2. How fast is video generation?</p>
-      <p>Depending on length and complexity, most videos generate in under a minute, optimized for quality and realism.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        2. How fast is video generation?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Short videos up to 6 seconds usually generate in under 30 seconds. Longer videos may take up to a minute depending on complexity. Speed is optimized for high-quality output.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">3. What AI models are used?</p>
-      <p>RunDiffusion, Face Swap, AI voice synthesis, and hyper-realistic cinematic generators are integrated for real output — no mockups.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        3. What AI models are used?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        RunDiffusion, cinematic AI, Face Swap, multi-scene generators, and AI voice synthesis. Fully integrated — all outputs are real, professional, and high quality.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">4. Can I use my own photos or characters?</p>
-      <p>Absolutely. Upload your own photos for Photo-to-Video or generate custom characters for your story.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        4. Can I use my own photos or characters?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Absolutely! Upload images for Photo-to-Video or generate custom characters via text prompts. AI animates faces, expressions, and scenes intelligently.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">5. How do plans differ?</p>
-      <p>Free plan allows 1 short video; Pro/Diamond/Lifetime unlock longer videos, higher resolution, unlimited generation, and premium features.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        5. How do plans differ?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        <strong>Entry:</strong> 1 short video, limited AI voices & templates.<br>
+        <strong>Pro:</strong> Unlimited videos, high resolution, multi-scene AI, custom voices.<br>
+        <strong>Diamond:</strong> Everything in Pro + commercial rights, priority AI, extended length up to 3 mins, advanced effects.<br>
+        <strong>Lifetime:</strong> All Diamond features forever + VIP support, early access to new tools.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">6. Can I upgrade later?</p>
-      <p>Yes. Upgrade anytime using PayPal, Paystack, or M-Pesa links in the Plans section.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        6. Can I upgrade later?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Yes, upgrade anytime via your dashboard. Payments supported: PayPal, Paystack, M-Pesa, Visa, Mastercard, Amex. Unlocks new features instantly.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">7. Is there a refund policy?</p>
-      <p>Yes, see Terms & Conditions below. Refunds are possible within 7 days under certain conditions.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        7. Is there a refund policy?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Refunds are available within 7 days under certain conditions. See Terms & Conditions for details. Eligible refunds are processed quickly.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">8. Are generated videos saved?</p>
-      <p>All videos are saved to your dashboard. Free plan downloads are limited; paid plans allow full downloads.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        8. Are generated videos saved?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        All videos are saved in your dashboard. Entry plan allows 1 download; paid plans allow unlimited downloads and access to past creations.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">9. What file formats are supported?</p>
-      <p>Videos are exported as MP4. Photos for uploads should be PNG or JPEG.</p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        9. What file formats are supported?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Videos export as MP4. Upload photos in PNG or JPEG. Audio is embedded in videos automatically.
+      </div>
     </div>
-    <div>
-      <p class="faq-question">10. Who can I contact for support?</p>
-      <p>Email: <a href="mailto:keishapoa@gmail.com" class="underline text-[#D4AF37]">keishapoa@gmail.com</a></p>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        10. Who can I contact for support?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Email <a href="mailto:keishapoa@gmail.com" class="underline text-[#D4AF37]">keishapoa@gmail.com</a>. Our team provides timely support and guidance.
+      </div>
     </div>
+
+    <!-- Additional FAQs -->
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        11. Can I use videos commercially?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Diamond & Lifetime plans include commercial rights. Videos can be used in ads, client projects, and monetized content.
+      </div>
+    </div>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        12. Can I combine text and images in one video?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Yes! Create hybrid videos using both text prompts and uploaded images for richer storytelling.
+      </div>
+    </div>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        13. Can I customize AI voices?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Paid plans allow AI voice customization with multiple languages, tones, and styles for narration or character voices.
+      </div>
+    </div>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        14. Are there ready-made templates?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Yes, Kairah Studio includes trending templates for viral videos. Templates are fully customizable with text, images, and AI effects.
+      </div>
+    </div>
+
+    <div class="border-b border-gray-700 pb-4 faq-item">
+      <button class="faq-toggle w-full text-left flex justify-between items-center py-2 font-semibold text-lg">
+        15. Can I track usage and history?
+        <span class="faq-icon transition-transform duration-200">+</span>
+      </button>
+      <div class="faq-answer hidden text-gray-300 mt-2">
+        Dashboard logs all generated videos, downloads, plan status, and usage stats, giving full control over your projects.
+      </div>
+    </div>
+
   </div>
 </section>
+
+<script>
+  // Collapsible FAQ
+  const faqToggles = document.querySelectorAll('.faq-toggle');
+  faqToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const answer = toggle.nextElementSibling;
+      answer.classList.toggle('hidden');
+      const icon = toggle.querySelector('.faq-icon');
+      icon.textContent = answer.classList.contains('hidden') ? '+' : '−';
+    });
+  });
+
+  // Searchable FAQ
+  const searchInput = document.getElementById('faq-search');
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach(item => {
+      const question = item.querySelector('.faq-toggle').innerText.toLowerCase();
+      const answer = item.querySelector('.faq-answer').innerText.toLowerCase();
+      if(question.includes(query) || answer.includes(query)){
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 <!-- Terms & Privacy -->
 <section id="terms" class="py-16 max-w-6xl mx-auto px-6">

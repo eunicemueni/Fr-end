@@ -1,104 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kairah Studio – Luxury AI Video Creator</title>
-<meta name="description" content="Kairah Studio lets you create cinematic, AI-powered videos from text or photos. Explore viral templates, hyper-realistic models, and stunning animations.">
-<meta name="keywords" content="Kairah Studio, AI Video Creator, Text to Video, Photo to Video, Viral Templates, Cinematic AI, Hyper-Realistic, AI Animation">
-<meta name="author" content="Kairah Official">
-<link rel="icon" href="https://yourdomain.com/favicon.ico" type="image/x-icon">
+<body class="bg-[#1a1424] text-white">
 
-<!-- Tailwind CSS with luxury theme -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          kairahGold: '#D4AF37',
-          midnightPlum: '#3D2C41',
-          softBlush: '#E7D2CB',
-          luxuryBg: '#1a1424',
-          accentPink: '#ff4d6d'
-        },
-        fontFamily: {
-          poppins: ['Poppins', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<!-- Custom Styles for Luxury Look -->
-<style>
-  body { 
-    font-family: 'Poppins', sans-serif; 
-    background: linear-gradient(180deg, #1a1424 0%, #3D2C41 100%); 
-    color: white; 
-    scroll-behavior: smooth; 
-  }
-  .btn { 
-    background-color: #D4AF37; 
-    color: #1a1424; 
-    padding: 0.7rem 1.5rem; 
-    border-radius: 0.75rem; 
-    font-weight: 700; 
-    font-size: 1rem; 
-    transition: all 0.3s; 
-    cursor: pointer; 
-    display: inline-block; 
-    text-align: center; 
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
-  }
-  .btn:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.8); 
-  }
-  .video-slide { 
-    max-width: 100%; 
-    border-radius: 0.75rem; 
-    box-shadow: 0 0 30px rgba(0,0,0,0.8); 
-  }
-  .discount-badge { 
-    background-color: #ff4d6d; 
-    color: white; 
-    padding: 0.3rem 0.6rem; 
-    font-size: 0.85rem; 
-    border-radius: 0.4rem; 
-    margin-left: 0.5rem; 
-  }
-  .faq-question { 
-    font-weight: 700; 
-    margin-top: 1.2rem; 
-    font-size: 1.05rem;
-  }
-  .footer-links a { 
-    color: #D4AF37; 
-    text-decoration: underline; 
-    font-weight: 600; 
-  }
-  h1, h2, h3 { 
-    color: #D4AF37; 
-  }
-  input, select, textarea {
-    border-radius: 0.5rem;
-    padding: 0.6rem;
-    border: none;
-    font-size: 1rem;
-  }
-</style>
-</head>
-<body>
+<!-- LUXURY CENTERED HEADER -->
+<header class="w-full text-center py-10">
+  <h1 class="text-4xl md:text-6xl font-bold tracking-wide" style="color:#D4AF37;">
+    ✦ KAIRAH STUDIO ✦
+  </h1>
+  <p class="mt-3 text-base md:text-lg text-gray-300 max-w-xl mx-auto">
+    Royal AI Video Creator for Timeless Visual Masterpieces
+  </p>
+  <div class="mt-6 flex justify-center">
+    <a href="#create">
+      <button class="btn text-black font-semibold text-lg px-8 py-3 rounded-lg shadow-xl" style="background-color:#D4AF37;">
+        Enter Studio
+      </button>
+    </a>
+  </div>
+</header>
 
 <!-- Hero Section -->
 <section class="text-center py-16 bg-gradient-to-b from-[#3D2C41] to-[#1a1424]">

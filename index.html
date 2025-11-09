@@ -436,20 +436,74 @@ function copyMpesainfo(phone, plan){
   });
 }
 </script>
+<script>
+  // Your Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAGlNOCAwsgeDnSJtBux2uIMuP0p_jBJns",
+    authDomain: "kairah-studio.firebaseapp.com",
+    projectId: "kairah-studio",
+    storageBucket: "kairah-studio.appspot.com",
+    messagingSenderId: "145122424961",
+    appId: "1:145122424961:web:31156e5b0f185d7c503580",
+    measurementId: "G-X4VGPQSNGD"
+  };
 
-<!-- Sign Up / Login Section -->
-<section id="signup" class="py-16 max-w-2xl mx-auto px-6">
-  <h2 class="text-3xl font-bold text-center text-[#D4AF37] mb-8">Sign Up / Login</h2>
-  <div class="bg-[#3D2C41] p-8 rounded-xl">
-    <input type="email" id="email" placeholder="Email" class="w-full p-3 mb-4 rounded text-black">
-    <input type="password" id="password" placeholder="Password" class="w-full p-3 mb-4 rounded text-black">
-    <button id="signup-btn" class="btn w-full mb-2">Sign Up</button>
-    <button id="login-btn" class="btn w-full mb-2">Login</button>
-    <button id="google-login" class="btn w-full">Sign In with Google</button>
-    <p class="mt-2 text-sm">Forgot password? <a href="#" class="text-[#D4AF37]">Reset here</a></p>
-    <p class="mt-2 text-sm text-[#ff4d6d]">Support: keishapoa@gmail.com</p>
-  </div>
-</section>
+  // Initialize Firebase (Compat Version for your setup)
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // SIGN UP
+  document.getElementById("signup-btn").addEventListener("click", () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        userCredential.user.sendEmailVerification();
+        alert("✅ Account created. Check your email for verification.");
+      })
+      .catch((error) => {
+        alert("❌ " + error.message);
+      });
+  });
+
+  // LOGIN
+  document.getElementById("login-btn").addEventListener("click", () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+
+        // Require email verification before allowing usage
+        if (!userCredential.user.emailVerified) {
+          alert("⚠️ Please verify your email before accessing Kairah Studio.");
+          auth.signOut();
+          return;
+        }
+
+        alert("✅ Login Successful. Redirecting...");
+        window.location.href = "#video-tool"; // move user to creator
+      })
+      .catch((error) => {
+        alert("❌ " + error.message);
+      });
+  });
+
+  // GOOGLE LOGIN
+  document.getElementById("google-login").addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(() => {
+        alert("✅ Signed in with Google!");
+        window.location.href = "#video-tool";
+      })
+      .catch((error) => {
+        alert("❌ " + error.message);
+      });
+  });
+</script>
+
 <!-- FAQ Section -->
 <section id="faq" class="py-16 bg-[#2b1f38] text-white px-6 max-w-7xl mx-auto">
   <h2 class="text-4xl font-bold text-center text-[#D4AF37] mb-12">Frequently Asked Questions</h2>
